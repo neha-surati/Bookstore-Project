@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book - BookStore</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    header .nav-link {
+      color: #333;
+      font-size: 16px;
+      position: relative;
+    }
+
+    header .nav-link.active {
+      color:#ff4793; 
+    }
+
+    header .nav-link:hover {
+      color: #ff4793;
+      text-decoration: none;
+    }
+
+    header .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background:#ff4793;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    header .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .search-section {
+      background: linear-gradient(to right, #dce9f4, #7bcce7);
+      border-radius: 0 0 50px 50px;
+    }
+
+    .search-section h1 {
+      color: #333;
+    }
+
+    .search-section .form-control {
+      width: 50%;
+      max-width: 500px;
+    }
+
+    .btn-pink {
+      background: #ff69b4;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .btn-pink:hover {
+      background-color: #ff4793;
+      border-color: #ff4793;
+    }
+
+    .book-list .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .book-list .card-img-top {
+      border-radius: 10px 10px 0 0;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .book-list .card-img-top:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-outline-pink {
+      color: #ff69b4;
+      border: 1px solid #ff69b4;
+      border-radius: 5px;
+    }
+
+    .btn-outline-pink:hover {
+      background-color: #ff4793;
+      border-color: #ff4793;
+      color: white;
+    }
+
+    footer {
+      background: linear-gradient(to right, #dce9f4, #7bcce7); 
+      border-radius: 50px 50px 0 0;
+      padding: 2rem 0;
+    }
+
+    footer .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    footer .footer-content div {
+      margin-bottom: 1rem;
+    }
+
+    footer .social-icons a {
+      color: #333;
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+
+    footer .social-icons a:hover {
+      color: #ff4793;
+    }
+
+    footer .quick-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    footer .quick-links ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    footer .quick-links ul li a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    footer .quick-links ul li a:hover {
+      color: #ff4793;
+    }
+
+    footer address {
+      font-style: normal;
+    }
+  </style>
+
+<body>
+    <!-- Header Section -->
+    <header class="bg-white py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="logo d-flex align-items-center">
+                <img src="https://i.pinimg.com/564x/19/fc/83/19fc830b162e96836e01d892f087bf86.jpg" alt="Logo" class="img-fluid" style="max-height: 50px;">
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Shop</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="header-buttons">
+                <a href="#" class="btn btn-pink mr-2">Search</a>
+                <a href="#" class="btn btn-outline-info ">Login</a>
+            </div>
+        </div>
+    </header>
+    <!-- Add Book Section -->
+   
+    <section class="add-book-section text-center search-section py-5">
+        <div class="container">
+            <h1 class="mb-4">Edit  Book</h1>
+            <form class="form-horizontal" action="/editData" method="post">
+                <input type="hidden" name="id" value="<%=data.id%>" />
+                <div class="form-group row justify-content-center">
+                    <label for="bookImage" class="col-sm-2 col-form-label">Book Image URL</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="bookImage" name="bookImage" value="<%=data.bookImage%>" required>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="bookTitle" class="col-sm-2 col-form-label">Book Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="bookTitle" name="bookName" value="<%=data.bookName%>" required>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="bookType" class="col-sm-2 col-form-label">Book Type</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" id="bookType" name="bookType" required>
+                            <option value="">Select Book Type</option>
+                            <%
+                            let bookType=["Fiction","Non-Fiction","Biography","Science","History"]
+                            bookType.map((val)=>{
+                               %>
+                               <option <% if(data.bookType==val){ %> selected <% } %> value="<%= val %>"    ><%= val %></option>
+                                <%
+                            })
+                            %>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <label for="publisherName" class="col-sm-2 col-form-label">Publisher Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="publisherName" name="publisherName"  value="<%=data.publisherName%>"required>
+                    </div>
+                </div>
+               
+                
+                <div class="form-group row justify-content-center">
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-pink">Update Book</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+   <!-- Footer Section -->
+   <footer>
+    <div class="container footer-content">
+        <div>
+            <h5>Contact Us</h5>
+            <address>
+                435 Tresdale Road,<br>
+                Entertainment District,<br>
+                Fictional City, XA 27402<br>
+                Email: support@bookstore.com<br>
+                Phone: (123) 456-7890
+            </address>
+        </div>
+        <div class="social-icons">
+            <h5>Follow Us</h5>
+            <a href="#" class="text-dark"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-dark"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-dark"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-dark"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <div class="quick-links">
+            <h5>Quick Links</h5>
+            <ul>
+                <li><a href="#" class="text-dark">Home</a></li>
+                <li><a href="#" class="text-dark">About Us</a></li>
+                <li><a href="#" class="text-dark">Contact</a></li>
+                <li><a href="#" class="text-dark">Shop</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container mt-3 text-center">
+        <p class="mb-0">&copy; 2024 BookStore. All Rights Reserved.</p>
+   
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
